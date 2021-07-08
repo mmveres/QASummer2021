@@ -1,6 +1,13 @@
 package ua.univer;
 
 public class Main {
+    /**
+     * ljsklfjkldsjf
+     * dslfjslkdjf
+     * dlkfkjsd;fjds;kl
+     * @param n1
+     * @return
+     */
     public static int task1(int n1) {
 
         if (n1 == 0) {
