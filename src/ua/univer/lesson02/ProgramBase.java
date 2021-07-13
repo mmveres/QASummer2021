@@ -3,8 +3,7 @@ package ua.univer.lesson02;
 public class ProgramBase {
 
     public static int findMax(int x, int y){
-        if (x > y) return x;
-        else return y;
+        return x > y ? x : y;
     }
 
     public static void main(String[] args) {
@@ -33,5 +32,6 @@ public class ProgramBase {
         System.out.println(x);
         System.out.println(++x);
         System.out.println(x);
+
     }
 }
