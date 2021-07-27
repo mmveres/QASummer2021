@@ -1,6 +1,6 @@
 package ua.univer.lesson07;
 
-public class Point {
+public class Point extends AbstactFigure{
     private int x;
     private int y;
 
@@ -34,6 +34,6 @@ public class Point {
         return "Point{" +
                 "x=" + x +
                 ", y=" + y +
-                '}';
+                '}'+super.toString();
     }
 }

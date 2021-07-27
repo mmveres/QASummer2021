@@ -27,6 +27,6 @@ public class Point3D extends Point {
                 "x ="+ super.getX() +
                 ", y ="+ super.getY() +
                 ", z =" + this.getZ() +
-                "} ";
+                "} "+super.toString();
     }
 }
