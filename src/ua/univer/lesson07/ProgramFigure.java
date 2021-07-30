@@ -1,6 +1,22 @@
 package ua.univer.lesson07;
+class YellowFlower implements ColorAble{
 
+    @Override
+    public String getColor() {
+        return "yellow";
+    }
+
+    @Override
+    public void setColor(String color) {
+        throw new IllegalArgumentException("Yellow can't change Color");
+    }
+}
 public class ProgramFigure {
+    public static void printColor(ColorAble colorAble){
+        System.out.println(colorAble.getColor());
+
+        System.out.println(ColorAble.BLACK);
+    }
     public static void main(String[] args) {
         Point p1 = new Point(1,2);
         ColorPoint cp1 = new ColorPoint(3,3,"red");
@@ -34,9 +50,20 @@ public class ProgramFigure {
         for (var obj: figures) {
             System.out.println(obj);
         }
-        ColorAble [] colors = {cp1,cl1};
-        for(var color: colors){
-            System.out.println(color);
+        ColorAble [] colors = {cp1,cl1, new YellowFlower(), new ColorAble() {
+            private  String color;
+            @Override
+            public String getColor() {
+                return color;
+            }
+
+            @Override
+            public void setColor(String color) {
+                this.color = color;
+            }
+        }};
+        for(var colorObj: colors){
+            printColor(colorObj);
         }
     }
 }
