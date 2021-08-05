@@ -28,32 +28,40 @@ enum VagonEnum {
     }
 }
 
-class StackTrain implements Iterable<VagonEnum>{
-    private VagonEnum[] train;
+enum CarEnum{
+    Cargo, Pass;
+}
+
+class StackTrain<T> implements Iterable<T>{
+    private T[] train;
     private int top = -1;
 
-    public StackTrain(VagonEnum[] train) {
+    public StackTrain(T[] train) {
         this.train = train;
         top = train.length-1;
     }
     public StackTrain() {
-        train = new VagonEnum[8];
+        train =(T[]) new Object[8];
     }
 
     public StackTrain(int n) {
-        train = new VagonEnum[n];
+        train = (T[]) new Object[8];
     }
 
-    public void push(VagonEnum v) {
+    public void push(T v) {
         if (isFull())
             throw new RuntimeException("Full stack");
         train[++top] = v;
     }
 
-    public VagonEnum pop() {
+    public T pop() {
         if (isEmpty())
             throw new RuntimeException("Empty stack");
-        return train[top--];
+
+        T v = train[top];
+        train[top]=null;
+        top--;
+        return v;
     }
 
     public boolean isEmpty(){
@@ -64,7 +72,7 @@ class StackTrain implements Iterable<VagonEnum>{
         return top == train.length-1;
     }
 
-    public VagonEnum peek() {
+    public T peek() {
         return train[top];
     }
 
@@ -83,8 +91,8 @@ class StackTrain implements Iterable<VagonEnum>{
 //    }
 
     @Override
-    public Iterator<VagonEnum> iterator() {
-        return new Iterator<VagonEnum>() {
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
             private int i;
             @Override
             public boolean hasNext() {
@@ -94,7 +102,7 @@ class StackTrain implements Iterable<VagonEnum>{
             }
 
             @Override
-            public VagonEnum next() {
+            public T next() {
                 return train[i++];
             }
         };
@@ -126,7 +134,7 @@ class StackTrain implements Iterable<VagonEnum>{
 public class ProgramStack {
     public static void main(String[] args) {
       //  StackTrain train = getStackTrain7();
-        StackTrain train = new StackTrain();
+        StackTrain<VagonEnum> train = new StackTrain();
         train.push(VagonEnum.Cargo);
         train.push(VagonEnum.Cargo);
         train.push(VagonEnum.Pass);
@@ -137,8 +145,8 @@ public class ProgramStack {
         train.push(VagonEnum.Pass);
         train.print();
 
-        StackTrain passTrain = new StackTrain();
-        StackTrain cargoTrain = new StackTrain();
+        StackTrain<VagonEnum> passTrain = new StackTrain();
+        StackTrain<VagonEnum> cargoTrain = new StackTrain();
 
         while (!train.isEmpty()){
            if( train.peek() == VagonEnum.Cargo)
@@ -158,6 +166,9 @@ public class ProgramStack {
         Iterator<VagonEnum> iter = passTrain.iterator();
         while (iter.hasNext())
             System.out.println(iter.next());
+        System.out.println("--------------------------------");
+
+        train.print();
     }
 
     private static StackTrain getStackTrain7() {
