@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-class Ship{
+class Ship implements Comparable<Ship>{
     private String name;
     private int x;
     private int y;
@@ -39,18 +39,18 @@ class Ship{
         this.y = y;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ship ship = (Ship) o;
-        return Objects.equals(name, ship.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Ship ship = (Ship) o;
+//        return Objects.equals(name, ship.name);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name);
+//    }
 
     @Override
     public String toString() {
@@ -60,6 +60,11 @@ class Ship{
                 ", y=" + y +
                 ", hash="+hashCode()+
                 '}';
+    }
+
+    @Override
+    public int compareTo(Ship o) {
+        return getName().compareTo(o.getName());
     }
 }
 public class ProgramJCF2 {
